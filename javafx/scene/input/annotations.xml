@@ -1,0 +1,9 @@
+<root>
+    <item name='javafx.scene.input.KeyCombination'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+    <item name='javafx.scene.input.KeyCombination CONTROL_DOWN'>
+        <annotation name='java.lang.Deprecated'/>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+</root>
