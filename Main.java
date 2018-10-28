@@ -1,4 +1,3 @@
-
 import com.sun.glass.ui.Robot;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -6,12 +5,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
@@ -20,6 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static javafx.scene.input.KeyCombination.CONTROL_DOWN;
 
 public class Main extends Application {
+
     public static void main(String[] args) {launch(args);}
     public static boolean ok=false;
     @Override
@@ -27,8 +27,31 @@ public class Main extends Application {
 
         AtomicInteger var= new AtomicInteger();
         var.set(0);
+        final boolean[] fini = {false};
 
-        boolean fini=false;
+        ImageView[] imaaP = new ImageView[]{
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView()
+        };
+
+       Image [] exemple = new Image[]{
+               new Image("mario0.jpg"),
+               new Image("mario1.jpg"),
+               new Image("mario2.jpg"),
+               new Image("mario3.jpg"),
+               new Image("mario4.jpg"),
+               new Image("mario5.jpg"),
+               new Image("mario6.jpg"),
+               new Image("mario7.jpg"),
+               new Image("mario8.jpg"),
+       };
 
         stage.setWidth(900);
         stage.setHeight(900);
@@ -127,58 +150,39 @@ public class Main extends Application {
         Rectangle rectangle0 = new Rectangle(0,0,298,298);
         rectangle0.setFill(imagePattern0);
         rectangle0.setRotate((int)(Math.random()*3+1)*90);
-        rectangle0.setOnMouseClicked((event)->{
-            rectangle0.setRotate(rectangle0.getRotate()+90);
-        });
+
         Rectangle rectangle1 = new Rectangle(300,0,298,298);
         rectangle1.setFill(imagePattern1);
         rectangle1.setRotate((int)(Math.random()*3+1)*90);
-        rectangle1.setOnMouseClicked((event)->{
-            rectangle1.setRotate(rectangle1.getRotate()+90);
-        });
+
         Rectangle rectangle2 = new Rectangle(600,0,298,298);
         rectangle2.setFill(imagePattern2);
         rectangle2.setRotate((int)(Math.random()*3+1)*90);
-        rectangle2.setOnMouseClicked((event)->{
-            rectangle2.setRotate(rectangle2.getRotate()+90);
-        });
+
         Rectangle rectangle3 = new Rectangle(0,300,298,298);
         rectangle3.setFill(imagePattern3);
         rectangle3.setRotate((int)(Math.random()*3+1)*90);
-        rectangle3.setOnMouseClicked((event)->{
-            rectangle3.setRotate(rectangle3.getRotate()+90);
-        });
+
         Rectangle rectangle4 = new Rectangle(300,300,298,298);
         rectangle4.setFill(imagePattern4);
         rectangle4.setRotate((int)(Math.random()*3+1)*90);
-        rectangle4.setOnMouseClicked((event)->{
-            rectangle4.setRotate(rectangle4.getRotate()+90);
-        });
+
         Rectangle rectangle5 = new Rectangle(600,300,298,298);
         rectangle5.setFill(imagePattern5);
         rectangle5.setRotate((int)(Math.random()*3+1)*90);
-        rectangle5.setOnMouseClicked((event)->{
-            rectangle5.setRotate(rectangle5.getRotate()+90);
-        });
+
         Rectangle rectangle6 = new Rectangle(0,600,298,298);
         rectangle6.setFill(imagePattern6);
         rectangle6.setRotate((int)(Math.random()*3+1)*90);
-        rectangle6.setOnMouseClicked((event)->{
-            rectangle6.setRotate(rectangle6.getRotate()+90);
-        });
+
         Rectangle rectangle7 = new Rectangle(300,600,298,298);
         rectangle7.setFill(imagePattern7);
         rectangle7.setRotate((int)(Math.random()*3+1)*90);
-        rectangle7.setOnMouseClicked((event)->{
-            rectangle7.setRotate(rectangle7.getRotate()+90);
-        });
+
         Rectangle rectangle8 = new Rectangle(600,600,298,298);
         rectangle8.setFill(imagePattern8);
         rectangle8.setRotate((int)(Math.random()*3+1)*90);
-        rectangle8.setOnMouseClicked((event)->{
-            rectangle8.setRotate(rectangle8.getRotate()+90);
 
-        });
         rect.add(rectangle0);
         rect.add(rectangle1);
         rect.add(rectangle2);
@@ -300,32 +304,91 @@ public class Main extends Application {
                     ((Rectangle) event.getGestureSource()).setY(varY1);
                     rect.get(constante).setX(varX);
                     rect.get(constante).setY(varY);
+
+                    for (int j=0;j<9;j++){
+
+                        if (rect.get(j).getX()==0 && rect.get(j).getY()==0){
+                            imaaP[0].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==300 && rect.get(j).getY()==0){
+                            imaaP[1].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==600 && rect.get(j).getY()==0){
+                            imaaP[2].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==0 && rect.get(j).getY()==300){
+                            imaaP[3].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==300 && rect.get(j).getY()==300){
+                            imaaP[4].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==600 && rect.get(j).getY()==300){
+                            imaaP[5].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==0 && rect.get(j).getY()==600){
+                            imaaP[6].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==300 && rect.get(j).getY()==600){
+                            imaaP[7].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }else if (rect.get(j).getX()==600 && rect.get(j).getY()==600){
+                            imaaP[8].setImage(Image.impl_fromPlatformImage((rect.get(j).getFill())));
+                        }
+                    }
+                    verif(exemple,imaaP,fini);
                 });
             }
-            if (fini){
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Félicitations!!!!");
-                switch (var.get()){
-                    case 0:alert.setHeaderText("Vous avez passé le casse-tête de Mario!");break;
-                    case 1:alert.setHeaderText("Vous avez passé le casse-tête de Charles!");break;
-                    case 2:alert.setHeaderText("Vous avez passé le casse-tête de Nicolas!");break;
-                    case 3:alert.setHeaderText("Vous avez passé le casse-tête de Simon!");break;
-                    case 4:alert.setHeaderText("Vous avez passé le casse-tête de Rapahel!");break;
+        rectangle0.setOnMouseClicked((event)->{
+            rectangle0.setRotate(rectangle0.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle1.setOnMouseClicked((event)->{
+            rectangle1.setRotate(rectangle1.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle2.setOnMouseClicked((event)->{
+            rectangle2.setRotate(rectangle2.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle3.setOnMouseClicked((event)->{
+            rectangle3.setRotate(rectangle3.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle4.setOnMouseClicked((event)->{
+            rectangle4.setRotate(rectangle4.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle5.setOnMouseClicked((event)->{
+            rectangle5.setRotate(rectangle5.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle6.setOnMouseClicked((event)->{
+            rectangle6.setRotate(rectangle6.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle7.setOnMouseClicked((event)->{
+            rectangle7.setRotate(rectangle7.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+        rectangle8.setOnMouseClicked((event)->{
+            rectangle8.setRotate(rectangle8.getRotate()+90);
+            verif(exemple,imaaP,fini);
+        });
+                if (fini[0]){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Félicitations!!!!");
+                    switch (var.get()){
+                        case 0:alert.setHeaderText("Vous avez passé le casse-tête de Mario!");break;
+                        case 1:alert.setHeaderText("Vous avez passé le casse-tête de Charles!");break;
+                        case 2:alert.setHeaderText("Vous avez passé le casse-tête de Nicolas!");break;
+                        case 3:alert.setHeaderText("Vous avez passé le casse-tête de Simon!");break;
+                        case 4:alert.setHeaderText("Vous avez passé le casse-tête de Rapahel!");break;
+                    }
+
+                    alert.setContentText("Voulez-vous rejouer?");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                        var.set(-1);
+                        changerImage(imageChoisi,rectangle0,rectangle1,rectangle2,rectangle3,rectangle4,rectangle5,rectangle6,rectangle7,rectangle8);
+                        fini[0] =false;
+                    } else {
+                        System.exit(0);
+                    }
+
                 }
-
-                alert.setContentText("Voulez-vous rejouer?");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    var.set(-1);
-                    changerImage(imageChoisi,rectangle0,rectangle1,rectangle2,rectangle3,rectangle4,rectangle5,rectangle6,rectangle7,rectangle8);
-                    fini=false;
-                } else {
-                    System.exit(0);
-                }
-            }
-
-
 
         bp.setTop(mb);
         bp.setCenter(root);
@@ -420,6 +483,14 @@ public class Main extends Application {
                     new ImagePattern(image[8])};
             ok=true;
             melanger(ip,rectangle0,rectangle1,rectangle2,rectangle3,rectangle4,rectangle5,rectangle6,rectangle7,rectangle8);
+    }
+    public void verif(Image[] exemple,ImageView[]imaaP,boolean[]fini){
+        fini[0]=true;
+        for (int k =0;k<9;k++){
+            if (!exemple[k].equals(imaaP[k].getImage())){
+                fini[0]=false;
+            }
+        }
     }
 
 }
